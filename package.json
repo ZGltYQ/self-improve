@@ -1,0 +1,54 @@
+{
+  "name": "self-improve",
+  "version": "1.1.0",
+  "description": "Self-improving MCP server that learns from your corrections. Stores coding rules as searchable knowledge with vector similarity search — so AI assistants never repeat the same mistakes.",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "self-improve": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "NODE_OPTIONS='--import tsx' node src/index.ts",
+    "inspect": "npx @modelcontextprotocol/inspector tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "coding-knowledge",
+    "self-improving",
+    "vector-search",
+    "llm",
+    "ai-assistant",
+    "coding-rules",
+    "claude",
+    "cursor"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@xenova/transformers": "^2.17.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.3.0"
+  }
+}
