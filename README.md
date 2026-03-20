@@ -187,6 +187,31 @@ Example: User asks "fix the login bug" → First call `find_rules` with `query: 
 Call `add_rule` to save the correction so you remember it next time.
 ```
 
+## Why This Instead of CLAUDE.md / AGENTS.md?
+
+AI coding tools like Claude Code and Cursor support static instruction files (`CLAUDE.md`, `AGENTS.md`, `.cursorrules`). They work — but they don't scale. Here's the difference:
+
+| | Static files (`CLAUDE.md`) | `self-improve` |
+|---|---|---|
+| **Learning** | You write rules manually | AI saves rules automatically when you correct it |
+| **Search** | Entire file loaded into context every time | Vector similarity search — only relevant rules are returned |
+| **Scope** | Per-project only | Global rules + per-project rules, all in one place |
+| **Cross-project** | Copy-paste between repos | Knowledge persists in `~/.self-improve`, works across all projects |
+| **Context window** | Eats tokens even when irrelevant | Returns only top-N matching rules with token budgeting |
+| **Deduplication** | Manual — you notice duplicates yourself | Auto-merge similar rules, prune unused ones |
+| **Structure** | Free-form markdown | Structured rules with `what_was_wrong`, `what_is_right`, `why`, code examples |
+| **Project context** | Mixed in with instructions | Separate `set_project_context` / `get_project_context` with RAG retrieval |
+
+### The real problem with static files
+
+A `CLAUDE.md` with 50 rules wastes thousands of tokens on every message — even when you're editing an unrelated file. As rules grow, the file becomes a wall of text that's hard to maintain and expensive to process.
+
+`self-improve` solves this: the AI calls `find_rules("fix login validation")` and gets back only the 3-5 rules that actually matter for that task. Everything else stays out of context.
+
+### They work together
+
+You don't have to choose. Use `CLAUDE.md` for high-level project instructions (tech stack, architecture overview, repo structure) and `self-improve` for the growing body of corrections and conventions that accumulate over time. The static file gives broad context; the MCP gives precise, searchable knowledge.
+
 ## How It's Built
 
 - **MCP SDK** — `@modelcontextprotocol/sdk` for the server protocol
