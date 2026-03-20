@@ -1,6 +1,6 @@
 {
   "name": "self-improve",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Self-improving MCP server that learns from your corrections. Stores coding rules as searchable knowledge with vector similarity search — so AI assistants never repeat the same mistakes.",
   "main": "dist/index.js",
   "type": "module",

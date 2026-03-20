@@ -41,6 +41,21 @@ Add to your Cursor MCP settings:
 }
 ```
 
+### OpenCode
+
+Add to `~/.config/opencode/config.json`:
+
+```json
+{
+  "mcp": {
+    "coding-knowledge": {
+      "type": "local",
+      "command": ["npx", "-y", "self-improve"]
+    }
+  }
+}
+```
+
 ### Windsurf / Other MCP Clients
 
 ```json
